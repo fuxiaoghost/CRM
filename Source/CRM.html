@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>CRM</title>
+		<meta name="author" content="Lizard.gg">
+		<!-- Date: 2011-07-31 -->
+		<link type="text/css" href="assets/css/ui.css" rel="stylesheet"/>
+		<script type="text/javascript" src="assets/js/jquery-1.4.1.min.js"></script>
+		<!--拖拽排序-->
+		<script type="text/javascript" src="assets/js/ui.core.js"></script>
+		<script type="text/javascript" src="assets/js/ui.sortable.js"></script>		
+		<script type="text/javascript" src="assets/js/AIRAliases.js"></script>
+		<script type="text/javascript" src="assets/js/sha1.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+		<script type="text/javascript" src="assets/js/page.js"></script>
+		<script type="text/javascript" src ="assets/js/py.js"></script>
+	</head>
+	<body> 
+		<div id="header">
+			<div id="hinfo"></div>
+		</div>
+		<div id="content">
+			<div id="cleft">
+				<ul id="cleft-ul">
+					<li id="liAllLetters" flag="off">
+						*
+					</li>
+					<li flag="off">
+						A
+					</li>
+					<li flag="off">
+						B
+					</li>
+					<li flag="off">
+						C
+					</li>
+					<li flag="off">
+						D
+					</li>
+					<li flag="off">
+						E
+					</li>
+					<li flag="off">
+						F
+					</li>
+					<li flag="off">
+						G
+					</li>
+					<li flag="off">
+						H
+					</li>
+					<li flag="off">
+						I
+					</li>
+					<li flag="off">
+						J
+					</li>
+					<li flag="off">
+						K
+					</li>
+					<li flag="off">
+						L
+					</li>
+					<li flag="off">
+						M
+					</li>
+					<li flag="off">
+						N
+					</li>
+					<li flag="off">
+						O
+					</li>
+					<li flag="off">
+						P
+					</li>
+					<li flag="off">
+						Q
+					</li>
+					<li flag="off">
+						R
+					</li>
+					<li flag="off">
+						S
+					</li>
+					<li flag="off">
+						T
+					</li>
+					<li flag="off">
+						U
+					</li>
+					<li flag="off">
+						V
+					</li>
+					<li flag="off">
+						W
+					</li>
+					<li flag="off">
+						X
+					</li>
+					<li flag="off">
+						Y
+					</li>
+					<li flag="off">
+						Z
+					</li>
+				</ul>
+			</div>
+			<div id="contact">
+				<div id="cheader">
+					<input type="text" class="searchinput" id="searchinput" onKeyDown="SearchUI(event)" onBlur="if(this.value=='')value='- Search Products -';" onFocus="if(this.value=='- Search Products -')value='';" value="- Search Products -" />
+				</div>
+				<div id="ccontent">
+					<div id="ctoolbar">
+						<ul>
+							<li id="toolbtn" ></li>
+							<li id="toolcontent">
+								<table style="margin:0px; padding:0px; " cellpadding="0" cellspacing="0">
+									<tr>
+										<td>&nbsp;&nbsp;</td>
+										<td title="添加客户" id="tdAddUser"></td>
+										<td>&nbsp;&nbsp;</td>
+										<td id="tdAddGroup"></td>
+										<td>&nbsp;&nbsp;</td>
+										<td id="tdNews"></td>
+									</tr>
+								</table>
+							</li>
+						</ul>
+					</div>
+					<div id="clientListContent"></div>
+				</div>
+				<div id="cbottom">
+					<div id="cbottom-left" ></div>
+					<div id="cbottom-list">
+						<ul id="cbottom-ul"></ul>
+					</div>
+					<div id="cbottom-right" ></div>
+				</div>
+			</div>
+		</div>
+		<div id="marks"></div>
+		<div id="login">
+			<table id="logintable" cellpadding="0" cellspacing="0">
+				<tr>
+					<td style="text-align: right; width: 70px; ">登录名&nbsp;</td>
+					<td style="text-align: left; width: 130px;">
+					<input onkeydown="if(event.keyCode==13)$('#txtPwd').focus();" value="yss" id="txtLogincode" type="text" class="txtbox" style="width: 100px;" />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: right;width: 70px;">密&nbsp;&nbsp;&nbsp;码&nbsp;</td>
+					<td style="text-align: left; width: 130px;">
+					<input onkeydown="login(event)" value="yushasha4758716" id="txtPwd" type="password" class="txtbox" style="width: 100px;" />
+					</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;" colspan="2">
+					<input type="button" onkeydown="login(event)" onclick="login()" class="btn"  value="登录"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div id="addGroupPanel" class="dialog" style=" width:  300px;" >
+			<div class="dialogTitle">
+				<span>Add Groups</span>
+				<span class="dialogClose"></span>
+			</div>
+			<div  class="dialogContent">
+				<div class="sortable" id="groupItems" ></div>
+				<div>
+					<input onkeydown="AddGroup(event)" onfocus="ClearTxtGroup()" onblur="ShowTxtGroup()" id="txtGroup" style="width: 100%; color: #ddd;" type="text" value="Press Enter to add group" class="txtbox" />
+				</div>
+			</div>
+			<div class="dialogBottom">
+				<a id="cfmClientGroup" class="btn">完成</a>
+				<a id="cacClientGroup" class="btn cancel">取消</a>
+			</div>
+		</div>
+		<div id="addUser" class="dialog" style="width: 400px;" >
+			<div class="dialogTitle">
+				<span>Add Users</span>
+				<span class="dialogClose"></span>
+			</div>
+			<div class="dialogContent">
+				<div id="userBaseInfo">
+					<table class="tbUserInfo" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="userInfoKey">姓名：</td>
+							<td class="userInfoValue">
+							<input id="txtUserName" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">手机：</td>
+							<td class="userInfoValue">
+							<input id="txtUserPhone" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">开户意向：</td>
+							<td class="userInfoValue">
+							<input id="txtUserSex" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">年龄：</td>
+							<td class="userInfoValue">
+							<input id="txtUserAge" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">佣金：</td>
+							<td class="userInfoValue">
+							<input id="txtUserProfession" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">规模：</td>
+							<td class="userInfoValue">
+							<input id="txtUserScale" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">开户券商：</td>
+							<td class="userInfoValue">
+							<input id="txtUserCompany" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">认识时间：</td>
+							<td class="userInfoValue">
+							<input id="txtUserCreateData" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">重要程度：</td>
+							<td class="userInfoValue">							
+							<select id="seleUserLevel" style="width: 100%;">
+								<option value="0">0</option>	
+								<option value="1">1</option>
+								<option value="2">2</option>	
+								<option value="3">3</option>
+								<option value="4">4</option>	
+								<option value="5">5</option>
+								<option value="6">6</option>	
+								<option value="7">7</option>
+							</select>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="userOtherInfo">
+					<table class="tbUserInfo"  border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="userInfoKey">姓名：</td>
+							<td class="userInfoValue">
+							<input type="text" class="txtbox" />
+							</td>
+							<td class="userInfoDel"></td>
+						</tr>
+					</table>
+					<div >
+						<input id="txtUserOtherInfoKey" type="text" class="txtbox" style="width:80px;" />
+						<input id="txtUserOtherInfoValue" type="text" class="txtbox" style="width:260px;" />
+					</div>
+				</div>
+			</div>
+			<div class="dialogBottom">
+				<a id="cfmUserInfo" class="btn">完成</a>
+				<a id="cacUserInfo" class="btn cancel">取消</a>
+			</div>
+		</div>
+		<div id="modifyGroup" class="dialog" style=" width:  300px;" >
+			<div class="dialogTitle">
+				<span>Modify Groups</span>
+				<span class="dialogClose"></span>
+			</div>
+			<div  class="dialogContent">
+				<table style=" width:100%; padding: 0px; margin: 0px;" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<td style="width: 50%;"><div id="existGroups"></div></td>
+						<td style="width: 50%;"><div id="notExistGroups"></div></td>
+					</tr>
+				</table>
+			</div>
+			<div class="dialogBottom">
+				<a id="cfmMofidyGroup" class="btn">完成</a>
+				<a id="cacMofidyGroup" class="btn cancel">取消</a>
+			</div>
+		</div>
+		<div id="addRecord" class="dialog" style=" width:400px;" >
+			<div class="dialogTitle">
+				<span>Add Record</span>
+				<span class="dialogClose"></span>
+			</div>
+			<div  class="dialogContent">
+				<div class="existRecord"></div>
+				<div class="newRecord">
+					<table class="tbUserInfo" border="0" cellpadding="0" cellspacing="0">
+						<tr>
+							<td class="userInfoKey">通话时间：</td>
+							<td class="userInfoValue">
+							<input id="txtRecordTime" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">持股：</td>
+							<td class="userInfoValue">
+							<input id="txtRecordStock" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">意向：</td>
+							<td class="userInfoValue">
+							<input id="txtRecordIntention" type="text" class="txtbox" />
+							</td>
+						</tr>
+						<tr>
+							<td class="userInfoKey">备注：</td>
+							<td class="userInfoValue">
+							<input id="txtRecordRemark" type="text" class="txtbox" />
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="dialogBottom">
+				<a id="cfmAddRecord" class="btn">完成</a>
+				<a id="cacAddRecord" class="btn cancel">取消</a>
+			</div>
+		</div>
+	</body>
+</html>

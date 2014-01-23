@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<application xmlns="http://ns.adobe.com/air/application/1.5">
+	<id>Lizard.CRM</id>
+	<filename>CRM</filename>
+	<name>CRM</name>
+	<version>1.0</version>
+	<description>A Desktop Client for CRM</description>
+	<initialWindow>
+		<content>Rss.html</content>
+		<title>CRM</title>
+		<systemChrome>standard</systemChrome>
+		<transparent>false</transparent>
+		<visible>true</visible>
+		<minimizable>true</minimizable>
+		<maximizable>true</maximizable>
+		<resizable>true</resizable>
+		<width>500</width>
+		<height>638</height>		
+		<x>200</x>
+		<y>100</y>		
+	</initialWindow>	
+	<icon>
+		<image16x16>assets/icon/crm_16.png</image16x16>
+		<image32x32>assets/icon/crm_32.png</image32x32>
+		<image48x48>assets/icon/crm_48.png</image48x48>
+		<image128x128>assets/icon/crm_128.png</image128x128>
+	</icon>
+</application>

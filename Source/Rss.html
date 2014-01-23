@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Rss</title>
+		<meta name="author" content="Lizard.gg">
+		<!-- Date: 2011-08-10 -->
+		<link href="assets/css/rssui.css" type="text/css" rel="stylesheet"  />
+		<script type="text/javascript" src="assets/js/AIRAliases.js"></script>
+		<script type="application/x-shockwave-flash" src="assets/js/servicemonitor.swf" ></script>
+		<script type="text/javascript" src="assets/js/jquery-1.4.1.min.js"></script>
+		<script type="text/javascript" src="assets/js/rsspage.js"></script>
+		<script type="text/javascript" src="assets/js/ui.core.js"></script>
+		<script type="text/javascript" src="assets/js/ui.sortable.js"></script>
+		<script type="text/javascript" src="assets/js/rss.js"></script>
+		<script type="text/javascript" src="assets/js/formatDate.js"></script>
+	</head>
+	<body style="overflow: hidden;">
+		<div id="marks"></div>
+		<div id="prompt">
+			<div id="promptTitle" >重命名订阅名</div>
+			<div>
+				<input type="text" value="" id="promptTxt" />
+			</div>
+			<div id="promptBtn">
+				<input onclick="PromptReName()" type="button" class="btn" value="确定" />
+				<input onclick="PromptCancel()" type="button" class="btn" value="取消" />
+			</div>
+		</div>
+		<div id="menu">
+			<div onclick="ReName()" id="reName">重命名</div>
+			<div onclick="DelChannel()" id="delChannel">取消订阅</div>
+		</div>
+		<div id="loading">
+			数据加载中……
+		</div>
+		<div id="header">
+			订阅Rss源
+			<input value="" id="txtChannelURL" type="text"  />
+			<input  id="btnAdd" onclick="AddRss()" class="btn" type="button" value="订阅" />
+		</div>
+		<div id="content">
+			<div id="leftBar"></div>
+			<div id="rssContentHeader"></div>
+			<div id="rssContent">				
+				<table style=" width:100%; padding: 0px; margin: 0px;" cellpadding="0" cellspacing="0">
+					<tr>
+						<td flag='0' id="moveBar">
+							◀
+						</td>
+						<td id="listBar">
+							<div id="rssContentList"></div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div id="tail"></div>
+	</body>
+</html>
